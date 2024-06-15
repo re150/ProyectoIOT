@@ -1,5 +1,4 @@
 package com.proyecto.iot.demo.model;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,17 +7,14 @@ import jakarta.persistence.Id;
 @Entity
 public class Datos {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // Auto Increment
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    /*public Datos(float valor) {
-        this.valor = valor;
-    }*/
-
     private float valor;
 
-    // Getters y Setters
-    public float getId() {
+    public Datos() {
+    }
+
+    public int getId() {
         return id;
     }
 

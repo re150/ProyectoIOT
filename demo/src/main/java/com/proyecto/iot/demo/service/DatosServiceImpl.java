@@ -5,11 +5,15 @@ import com.proyecto.iot.demo.repositorio.DatosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 @Service
-public class DatosServiceImpl implements DatosService<Datos>{
+public class DatosServiceImpl implements DatosService<Datos> {
+    private final DatosRepository datosRepository;
+
     @Autowired
-    private DatosRepository datosRepository;
+    public DatosServiceImpl(DatosRepository datosRepository) {
+        this.datosRepository = datosRepository;
+    }
+
     @Override
     public Datos save(Datos datos) {
         return datosRepository.save(datos);
