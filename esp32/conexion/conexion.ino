@@ -23,7 +23,7 @@ SSD1306Wire display(0x3c, 500000, SDA_OLED, SCL_OLED, GEOMETRY_128_64, RST_OLED)
 
 void setup() {
   Serial.begin(9600);
-  WiFi.begin(red, password); // Conectar a la red WiFi
+  WiFi.begin(red, password); 
 
   while (WiFi.status() != WL_CONNECTED) {
     delay(1000);
@@ -32,7 +32,6 @@ void setup() {
 
   Serial.println("Conectado a WiFi");
 
-  // sencor  y pantalla
   Serial.println(F("DHTxx test!"));
 
   dht.begin();
@@ -47,16 +46,11 @@ void loop() {
   delay(2000);
 
   float h = dht.readHumidity();
-  // Read temperature as Celsius (the default)
   float t = dht.readTemperature();
-  // Read temperature as Fahrenheit (isFahrenheit = true)
   float f = dht.readTemperature(true);
 
-  // Check if any reads failed and exit early (to try again).
   if (isnan(h) || isnan(t) || isnan(f)) {
     Serial.println(F("Failed to read from DHT sensor!"));
-    
-    // Display error message on OLED display
     display.clear();
     display.drawString(0, 0, "Failed to read from DHT sensor!");
     display.display();
@@ -64,31 +58,17 @@ void loop() {
     return;
   }
 
-  // Compute heat index in Fahrenheit (the default)
   float hif = dht.computeHeatIndex(f, h);
-  // Compute heat index in Celsius (isFahrenheit = false)
   float hic = dht.computeHeatIndex(t, h, false);
 
-  Serial.print(F("Humidity: "));
-  Serial.print(h);
-  Serial.print(F("%  Temperature: "));
-  Serial.print(t);
-  Serial.print(F("°C "));
-  Serial.print(f);
-  Serial.print(F("°F  Heat index: "));
-  Serial.print(hic);
-  Serial.print(F("°C "));
-  Serial.print(hif);
-  Serial.println(F("°F"));
+  Serial.print(F("Datos mandados a  spring boot: "));
 
-  // Display the temperature and humidity on the OLED display.
+  
   display.clear();
-  display.setLogBuffer(5, 30); // Adjust the log buffer size if necessary
-  display.drawString(0, 0, "Humidity: " + String(h) + "%");
-  display.drawString(0, 10, "Temperature: " + String(t) + "°C");
-  display.drawString(0, 20, "Temperature: " + String(f) + "°F");
-  display.drawString(0, 30, "Heat index: " + String(hic) + "°C");
-  display.drawString(0, 40, "Heat index: " + String(hif) + "°F");
+  display.setLogBuffer(5, 30); 
+  display.drawString(0, 0, "Datos mandados a  spring boot ");
+  display.drawString(0, 10, "Proyecto IOT" );
+  display.drawString(0, 20, "Activo  ") ;
   display.display();
 
   //metodo post
