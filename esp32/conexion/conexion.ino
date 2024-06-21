@@ -3,9 +3,9 @@
 #include <DHT.h>
 #include "HT_SSD1306Wire.h"
 
-const char* red = "Totalplay-2.4G-c400"; 
-const char* password = "ZbsDPf8yU97RYD9t"; 
-const char* serverUrl = "http://192.168.100.9:8080/api/datos"; 
+const char* red = "red"; 
+const char* password = "contraseñan"; 
+const char* serverUrl = "ip"; 
 
 
 // censor
